@@ -1,5 +1,5 @@
 <template>
-    <div class='secDiv'>
+    <div class='secDiv' v-on:scroll='scrollMethod'>
         <span>发布于：{{createdTime}}</span>
         <router-link :to='{name:"UserRoute",params:{name: article.author.loginname}}'>作者：{{article.author.loginname}}</router-link>
         <span>浏览量：{{article.visit_count}}</span>
@@ -87,6 +87,7 @@
     #reply {
         display: flex;
         flex-direction: column;
+        background: blue;
     }
     
     #reply img {
@@ -95,6 +96,7 @@
     }
     
     .replySec {
+        box-sizing: border-box;
         display: flex;
         background: grey;
         width: 100%;
