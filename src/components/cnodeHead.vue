@@ -14,8 +14,8 @@
 
 <style scoped>
     .head {
-        background: grey;
-        height: 3.5rem;
+        background: #324057;
+        height: 3.6rem;
         width: 100%;
         position: absolute;
         top: 0;
@@ -31,9 +31,11 @@
     .head span {
         display: inline-block;
         float: right;
-        line-height: 3.5rem;
+        line-height: 3.6rem;
         margin-right: 10rem;
         font-weight: bold;
-        font-size: 22px;
+        font-size: 20px;
+        color: white;
+        letter-spacing: 2px;
     }
 </style>

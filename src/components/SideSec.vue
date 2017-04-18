@@ -4,8 +4,10 @@
             <router-link :to='{name: "UserRoute",params:{name: userInfo.loginname}}'><img :src='userInfo.avatar_url'></router-link>
             <span>{{userInfo.loginname}}</span>
         </div>
-        <p>分数：{{userInfo.score}}</p>
-        <p>Github: https://github.com/{{userInfo.githubUsername}}</p>
+        <p>
+            <icon name='score' scale='4'></icon>{{userInfo.score}}</p>
+        <p>
+            <icon name='github' scale='4'></icon>https://github.com/{{userInfo.githubUsername}}</p>
     </div>
 </template>
 
@@ -42,14 +44,31 @@
 <style scoped>
     .secDiv {
         width: 20%;
-        height: 30rem;
+        height: 20rem;
         background: #fff;
         border: 1px solid #ddd;
         word-break: break-all;
         font-size: 21px;
         padding: 2rem;
     }
-    
+    .secDiv div{
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+    }
+    .secDiv div span{
+        font-size: 25px;
+        margin-left: 1rem;
+        color: black;
+    }
+    .secDiv p {
+        display: flex;
+        align-items: center;
+        color: #475669;
+    }
+    .secDiv p svg{
+        margin-right: 1rem;
+    }
     img {
         width: 6rem;
         height: 6rem;

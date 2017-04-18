@@ -1,8 +1,8 @@
 <template>
-    <div class='secDiv' v-on:scroll='scrollMethod'>
-        <span>发布于：{{createdTime}}</span>
+    <div class='secDiv'>
+        <span class='marginSpan'>发布于：{{createdTime}}</span>
         <router-link :to='{name:"UserRoute",params:{name: article.author.loginname}}'>作者：{{article.author.loginname}}</router-link>
-        <span>浏览量：{{article.visit_count}}</span>
+        <span class='marginSpan'>浏览量：{{article.visit_count}}</span>
         <span>来自：{{article.tab}}</span>
         <h3>{{article.title}}</h3>
         <div v-html='article.content' id='content'></div>
@@ -10,10 +10,13 @@
             <div v-for='reply in article.replies' class='replySec'>
                 <router-link :to='{name: "UserRoute",params:{name: reply.author.loginname}}'><img :src='reply.author.avatar_url'></router-link>
                 <div>
-                    <div>
-                        <span>{{reply.author.loginname}}</span>
-                        <span>{{reply.create_at}}</span>
-                        <span v-if='reply.ups.length > 0'>点赞{{reply.ups.length}}</span>
+                    <div class='replyUp'>
+                        <span class='replyName'>{{reply.author.loginname}}</span>
+                        <span>{{dealCommentTime(reply.create_at)}}</span>
+                        <span v-if='reply.ups.length > 0' class='thumbsClass'>
+                                            <icon name='thumbs-up' scale='2'></icon>
+                                            <span>{{reply.ups.length}}</span>
+                        </span>
                     </div>
                     <p v-html='reply.content'></p>
                 </div>
@@ -44,6 +47,11 @@
                 return String(this.article.create_at).match(/.{10}/)[0];
             },
         },
+        methods: {
+            dealCommentTime(time) {
+                return String(time).match(/.{16}/)[0].replace(/.{2}/, '').replace(/[T]/, ' ');
+            },
+        },
         beforeCreate() {
             this.$http({
                 url: `https://cnodejs.org/api/v1${this.$route.path}`,
@@ -66,9 +74,27 @@
         max-width: 100%;
         max-height: 100%;
     }
+    
+    .replySec {
+        box-sizing: border-box;
+        display: flex;
+        border-bottom: 2px solid #C0CCDA;
+        width: 100%;
+        margin: 0.5rem auto;
+        padding: 1rem 0;
+    }
 </style>
 
-<style scoped>
+<style>
+    @import url('../assets/markdown-github.css');
+    .marginSpan {
+        margin: 0 0.5rem;
+    }
+    
+    .secDiv span:first-child {
+        margin-left: 0;
+    }
+    
     .secDiv {
         width: 60%;
         background: #fff;
@@ -77,34 +103,38 @@
         padding: 2rem;
     }
     
+    .secDiv span,
+    .secDiv a {
+        font-size: 17px;
+        color: #8492A6;
+    }
+    
+    .secDiv a {
+        color: black;
+        text-decoration: none;
+    }
+    
     #content {
-        margin: 1rem auto 2rem auto;
-        padding: 2rem 0 2rem 1rem;
-        border-top: 1px solid green;
-        border-bottom: 1px solid green;
+        margin: 2rem auto 2rem auto;
+        padding: 2rem 1rem 2rem 1rem;
+        border: 1px solid #ddd;
+        line-height: 1.6;
+        padding-bottom: 1rem;
     }
     
     #reply {
         display: flex;
         flex-direction: column;
-        background: blue;
     }
     
     #reply img {
         width: 5rem;
         height: 5rem;
-    }
-    
-    .replySec {
-        box-sizing: border-box;
-        display: flex;
-        background: grey;
-        width: 100%;
-        margin: 0.5rem auto;
-        padding: 1rem;
+        margin-right: 1rem;
     }
     
     .replySec>div {
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -112,5 +142,20 @@
         justify-content: space-around;
     }
     
-    .replySec div {}
+    .replySec p {
+        color: black;
+    }
+    
+    .replyUp {
+        width: 100%;
+    }
+    
+    .replySec .replyName {
+        color: #475669;
+        font-size: 20px;
+    }
+    
+    .secDiv .thumbsClass {
+        float: right;
+    }
 </style>
