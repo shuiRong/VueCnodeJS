@@ -45,7 +45,7 @@
     .secDiv {
         width: 20%;
         height: 20rem;
-        background: #fff;
+        background: #E5E9F2;
         border: 1px solid #ddd;
         word-break: break-all;
         font-size: 21px;
@@ -54,10 +54,10 @@
     .secDiv div{
         display: flex;
         align-items: flex-end;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
     .secDiv div span{
-        font-size: 25px;
+        font-size: 30px;
         margin-left: 1rem;
         color: black;
     }

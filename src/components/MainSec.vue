@@ -69,7 +69,7 @@
 <style scoped>
     .secDiv {
         width: 60%;
-        background: #FFFFFF;
+        background: #F9FAFC;
         border: 1px solid #ddd;
         display: flex;
         flex-direction: column;

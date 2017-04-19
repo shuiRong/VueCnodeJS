@@ -86,6 +86,7 @@
     .profile {
         padding: 1rem;
         background: #EFF2F7;
+        border-radius: 0.3rem;
     }
     
     .profile div {
@@ -135,12 +136,14 @@
     .recentTopics {
         padding: 1rem;
         background: #D3DCE6;
+        border-radius: 0.3rem;
     }
     
     .recentReplies {
         background: #E5E9F2;
         padding: 1rem;
         margin: 1rem 0;
+        border-radius: 0.3rem;
     }
     
     .recentReplies div,
@@ -149,7 +152,7 @@
         align-items: center;
         margin: 1rem 0;
         border-bottom: 2px solid #C0CCDA;
-        padding-bottom: 0.5rem;
+        padding-bottom: 1rem;
     }
     
     .recentTopics div{

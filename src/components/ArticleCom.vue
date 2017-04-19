@@ -101,6 +101,7 @@
         border: 1px solid #ddd;
         font-size: 20px;
         padding: 2rem;
+        background: #F9FAFC;
     }
     
     .secDiv span,
@@ -120,6 +121,7 @@
         border: 1px solid #ddd;
         line-height: 1.6;
         padding-bottom: 1rem;
+        background: #EFF2F7;
     }
     
     #reply {
