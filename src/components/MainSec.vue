@@ -1,5 +1,5 @@
 <template>
-    <div class='secDiv'>
+    <div class='secDiv' v-loading='loading'>
         <div v-for='item of content'>
             <router-link :to='{name: "UserRoute",params:{name: item.author.loginname}}'><img :src='item.author.avatar_url' :title='item.author.loginname'></router-link>
             <div class='textDiv'>
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+    console.log('Hello,Friend!');
+    
     export default {
         name: 'MainSection',
         data() {
@@ -23,6 +25,7 @@
                     create_at: '2017-02-22T11:32:43.547Z',
                 },
                 limit: 0,
+                loading: true,
             };
         },
         methods: {
@@ -46,7 +49,6 @@
                     },
                 }).then((res) => {
                     this.content = res.body.data;
-                    console.log(this.content);
                 }).catch((res) => {
                     console.log('MaiSec.vue: ', res);
                 });
@@ -63,6 +65,13 @@
         created() {
             this.getData();
         },
+        watch: {
+            content(val) {
+                if (val) {
+                    this.loading = false;
+                }
+            },
+        },
     };
 </script>
 
@@ -75,6 +84,7 @@
         flex-direction: column;
         font-size: 22px;
         padding: 2rem;
+        min-height: 40rem;
     }
     
     a {
@@ -103,13 +113,16 @@
         justify-content: flex-start;
         width: 100%;
     }
-    .textDiv a{
+    
+    .textDiv a {
         color: black;
         font-size: 25px;
     }
-    .textDiv a:visited{
+    
+    .textDiv a:visited {
         color: grey;
     }
+    
     .stuff {
         font-size: 17px;
         margin-top: 1rem;

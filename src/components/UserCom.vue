@@ -1,6 +1,6 @@
 <template>
     <div class='secDiv'>
-        <div class='profile'>
+        <div class='profile'  v-loading.lock='loading'>
             <div>
                 <img :src='userInfo.avatar_url' :title='userInfo.loginname'>
                 <span>{{userInfo.loginname}}</span>
@@ -13,28 +13,28 @@
                 <icon name='time' scale='4'></icon><span>注册时间：</span>{{dealCommentTime(userInfo.create_at)}}</p>
         </div>
     
-        <div class='recentReplies'>
+        <div class='recentReplies'  v-loading.lock='loading'>
             <p>最近参与的话题</p>
             <template v-for='(item,index) of userInfo.recent_replies'>
-                <div v-if='index < 4'>
-                                <router-link :to='{name: "UserRoute",params:{name: item.author.loginname}}'>
-                                    <img :src='item.author.avatar_url' :title='item.author.loginname'>
-                                </router-link>
-                                <router-link :to='{name: "ArticleRoute",params:{id:item.id}}'><p class='userTitle'>{{item.title}}</p></router-link>
-</div>
-            </template>
+                        <div v-if='index < 4'>
+                                        <router-link :to='{name: "UserRoute",params:{name: item.author.loginname}}'>
+                                            <img :src='item.author.avatar_url' :title='item.author.loginname'>
+                                        </router-link>
+                                        <router-link :to='{name: "ArticleRoute",params:{id:item.id}}'><p class='userTitle'>{{item.title}}</p></router-link>
+        </div>
+</template>
         </div>
         
-        <div class='recentTopics'>
+        <div class='recentTopics'  v-loading.lock='loading'>
             <p>最近创建的话题</p>
-            <template v-for='(item,index) of userInfo.recent_topics'>
-<div v-if='index < 5 && item'>
-    <img :src='item.author.avatar_url' :title='item.author.loginname'>
-    <router-link :to='{name: "ArticleRoute",params:{id:item.id}}'>
-        <p class='userTitle'>{{item.title}}</p>
-    </router-link>
-</div>
-            </template>
+<template v-for='(item,index) of userInfo.recent_topics'>
+    <div v-if='index < 5 && item'>
+        <img :src='item.author.avatar_url' :title='item.author.loginname'>
+        <router-link :to='{name: "ArticleRoute",params:{id:item.id}}'>
+            <p class='userTitle'>{{item.title}}</p>
+        </router-link>
+    </div>
+</template>
         </div>
     </div>
 </template>
@@ -44,6 +44,7 @@
         data() {
             return {
                 userInfo: {},
+                loading: true,
             };
         },
         created() {
@@ -62,7 +63,6 @@
             },
         },
         beforeRouteUpdate(to, from, next) {
-            console.log(to);
             this.$http({
                 url: `https://cnodejs.org/api/v1${to.path}`,
                 method: 'get',
@@ -72,6 +72,13 @@
                 console.log('UserCom.vue: ', res);
             });
             next();
+        },
+        watch: {
+            userInfo(val) {
+                if (val) {
+                    this.loading = false;
+                }
+            },
         },
     };
 </script>
@@ -155,9 +162,10 @@
         padding-bottom: 1rem;
     }
     
-    .recentTopics div{
+    .recentTopics div {
         border-bottom: 2px solid #99A9BF;
     }
+    
     .recentReplies div img,
     .recentTopics div img {
         margin-right: 1rem;

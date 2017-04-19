@@ -1,5 +1,5 @@
 <template>
-    <div class='secDiv'>
+    <div class='secDiv' v-loading.lock='loading'>
         <div>
             <router-link :to='{name: "UserRoute",params:{name: userInfo.loginname}}'><img :src='userInfo.avatar_url'></router-link>
             <span>{{userInfo.loginname}}</span>
@@ -20,6 +20,7 @@
                     avatar_url: '',
     
                 },
+                loading: true,
             };
         },
         created() {
@@ -38,6 +39,13 @@
                 console.log('SideSec.vue :', res);
             });
         },
+        watch: {
+            userInfo(val) {
+                if (val) {
+                    this.loading = false;
+                }
+            },
+        },
     };
 </script>
 
@@ -51,24 +59,29 @@
         font-size: 21px;
         padding: 2rem;
     }
-    .secDiv div{
+    
+    .secDiv div {
         display: flex;
         align-items: flex-end;
         margin-bottom: 2rem;
     }
-    .secDiv div span{
+    
+    .secDiv div span {
         font-size: 30px;
         margin-left: 1rem;
         color: black;
     }
+    
     .secDiv p {
         display: flex;
         align-items: center;
         color: #475669;
     }
-    .secDiv p svg{
+    
+    .secDiv p svg {
         margin-right: 1rem;
     }
+    
     img {
         width: 6rem;
         height: 6rem;

@@ -5,18 +5,18 @@
         <el-button type='text' @click='dialogVisible=true'>关于</el-button>
         <el-dialog title='Vue.js重写CnodeJS社区' v-model='dialogVisible' size='tiny'>
             <div class='dialogDiv'>
-                <span><strong>作者: &nbsp;&nbsp;</strong></span><a href='https://shuirong.github.io/' target='_target'>林水溶</a></span>
+                <span><strong>作者: &nbsp;&nbsp;</strong></span><a href='https://shuirong.github.io/' target='_blank'>林水溶</a></span>
                 <br>
-                <span><strong>源代码: &nbsp;&nbsp;</strong></span><a href='https://github.com/shuiRong/VueCnodeJS' taget='_blanket'>Github</a><span class='star'>&nbsp;&nbsp;Star Star</span>
+                <span><strong>源代码: &nbsp;&nbsp;</strong></span><a href='https://github.com/shuiRong/VueCnodeJS' target='_blank'>Github</a><span class='star'>&nbsp;&nbsp;Star Star</span>
                 <br>
                 <br>
                 <span><strong>技术栈: </strong></span>
                 <ul>
                     <li>Vue.js</li>
-                    <li>vue-router</li>
-                    <li>vue-resource</li>
+                    <li>Vue-router</li>
+                    <li>Vue-resource</li>
                     <li>Element</li>
-                    <li>cnodejs API</li>
+                    <li>CnodeJS API</li>
                 </ul>
             </div>
         </el-dialog>
@@ -61,9 +61,11 @@
         letter-spacing: 2px;
         padding-top: 0.2rem;
     }
-    .head .dialogDiv{
+    
+    .head .dialogDiv {
         font-size: 17px;
     }
+    
     .head ul {
         margin-left: 1rem;
     }
@@ -72,7 +74,8 @@
         text-decoration: none;
         color: #58B7FF;
     }
-    .head .star{
+    
+    .head .star {
         font-weight: bold;
         color: #1D8CE0;
         font-size: 20px;
