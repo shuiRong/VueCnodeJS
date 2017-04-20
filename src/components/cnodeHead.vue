@@ -34,7 +34,7 @@
 </script>
 
 <style scoped>
-    @import url("https://unpkg.com/element-ui/lib/theme-default/index.css");
+    @import url("https://cdn.bootcss.com/element-ui/1.2.8/theme-default/index.css");
     .head {
         background: #324057;
         height: 3.6rem;
