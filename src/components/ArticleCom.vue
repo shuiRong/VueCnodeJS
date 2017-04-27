@@ -14,8 +14,8 @@
                         <span class='replyName'>{{reply.author.loginname}}</span>
                         <span>{{dealCommentTime(reply.create_at)}}</span>
                         <span v-if='reply.ups.length > 0' class='thumbsClass'>
-                                                    <icon name='thumbs-up' scale='2'></icon>
-                                                    <span>{{reply.ups.length}}</span>
+                                                                    <icon name='thumbs-up' scale='2'></icon>
+                                                                    <span>{{reply.ups.length}}</span>
                         </span>
                     </div>
                     <p v-html='reply.content'></p>
@@ -32,7 +32,7 @@
                 article: {
                     title: '',
                     author: {
-                        loginname: '',
+                        loginname: 'temp',
                     },
                     visit_count: '',
                     tab: '',
@@ -67,6 +67,7 @@
             }).then((res) => {
                 if (res.body.success === true) {
                     this.article = res.body.data;
+                    this.$parent.authorName = this.article.author.loginname;
                 } else {
                     this.article = 'Sorry, Something wrong happened when getting the remote data';
                 }

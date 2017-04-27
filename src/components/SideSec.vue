@@ -18,33 +18,27 @@
             return {
                 userInfo: {
                     avatar_url: '',
-    
+                    loginname: 'temp',
                 },
                 loading: true,
-
+                name: '',
             };
-        },
-        created() {
-            this.$http({
-                url: `https://cnodejs.org/api/v1${this.$route.path}`,
-                method: 'get',
-            }).then((res) => {
-                const user = res.body.data.author.loginname;
-                return this.$http({
-                    url: `https://cnodejs.org/api/v1/user/${user}`,
-                    method: 'get',
-                });
-            }).then((res) => {
-                this.userInfo = res.body.data;
-            }).catch((res) => {
-                console.log('SideSec.vue :', res);
-            });
         },
         watch: {
             userInfo(val) {
                 if (val) {
                     this.loading = false;
                 }
+            },
+            name(val) {
+                this.$http({
+                    url: `https://cnodejs.org/api/v1/user/${val}`,
+                    method: 'get',
+                }).then((res) => {
+                    this.userInfo = res.body.data;
+                }).catch((res) => {
+                    console.log('SideSec.vue :', res);
+                });
             },
         },
     };
