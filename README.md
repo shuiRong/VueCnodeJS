@@ -53,8 +53,6 @@ PS: 默认用的是8080端口。
 
 > A Vue.js project : reconstruct cnodejs.org (Front End)
 
-[**Preview**](https://shuirong.github.io/vcnode/index.html#/)
-
 This's my first Vue project, and It takes my five days to write code and learn some skills else new. Not long ago, I think that learning some new skills will spend my plenty of time, But the truth is that It's easy to hold....
 
 Element is a concise UI component. I like Material UI like this.
@@ -96,4 +94,9 @@ npm run build
 npm run build --report
 ```
 
-PS: port 8080 will be used.
+**PS:** port 8080 will be used.
+
+**PPS:**If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete `.eslintrc.js`  in the root file. I'ts ok to delete it.
+
+
+
