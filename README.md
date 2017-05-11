@@ -96,7 +96,7 @@ npm run build --report
 
 **PS:** port 8080 will be used.
 
-**PPS:**If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete `.eslintrc.js`  in the root file. I'ts ok to delete it.
+**PPS:** If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete `.eslintrc.js`  in the root file. I'ts ok to delete it.
 
 
 
