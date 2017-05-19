@@ -43,7 +43,23 @@ npm run dev
 
 PS: 默认用的是8080端口。
 
-**PPS:** If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete `.eslintrc.js`  in the root file. I'ts ok to delete it.
+**PPS:** If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete 
+
+```javascript
+{
+                test: /\.(js|vue)$/,
+                loader: 'eslint-loader',
+                enforce: 'pre',
+                include: [resolve('src'), resolve('test'), ],
+                options: {
+                    formatter: require('eslint-friendly-formatter')
+                }
+            },
+```
+
+
+
+  in the `webpack.base.conf.js` file. It's ok to delete it.
 
 ### English：
 
@@ -96,7 +112,19 @@ npm run build --report
 
 **PS:** port 8080 will be used.
 
-**PPS:** If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete `.eslintrc.js`  in the root file. I'ts ok to delete it.
+**PPS:** If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete 
 
+```javascript
+{
+                test: /\.(js|vue)$/,
+                loader: 'eslint-loader',
+                enforce: 'pre',
+                include: [resolve('src'), resolve('test'), ],
+                options: {
+                    formatter: require('eslint-friendly-formatter')
+                }
+            },
+```
 
+  in the `webpack.base.conf.js` file. It's ok to delete it.
 
