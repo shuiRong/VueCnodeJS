@@ -43,7 +43,7 @@ npm run dev
 
 PS: 默认用的是8080端口。
 
-
+**PPS:** If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete `.eslintrc.js`  in the root file. I'ts ok to delete it.
 
 ### English：
 
