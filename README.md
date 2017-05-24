@@ -16,6 +16,10 @@ PS: 如果你想入门Vue,但苦于没有难度合适的项目的话，Here For 
 
 
 
+**2017-5-24：**如果你看完[Vuex](https://vuex.vuejs.org/zh-cn/)文档，对于如何把它应用到`实际项目`中还是有点茫然的话，那么我为这个项目写了一个Vuex版本。就在`vuexVersion`文件中。
+
+
+
 ### 技术栈：
 
 ---
@@ -35,7 +39,7 @@ PS: 如果你想入门Vue,但苦于没有难度合适的项目的话，Here For 
 ---
 
 ```bash
-git clone https://github.com/shuiRong/VueCnodeJS
+git clone https://github.com/shuiRong/VueCnodeJS.git
 cd VueCnodeJS
 npm install
 npm run dev
@@ -43,23 +47,7 @@ npm run dev
 
 PS: 默认用的是8080端口。
 
-**PPS:** If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete 
 
-```javascript
-{
-                test: /\.(js|vue)$/,
-                loader: 'eslint-loader',
-                enforce: 'pre',
-                include: [resolve('src'), resolve('test'), ],
-                options: {
-                    formatter: require('eslint-friendly-formatter')
-                }
-            },
-```
-
-
-
-  in the `webpack.base.conf.js` file. It's ok to delete it.
 
 ### English：
 
@@ -99,7 +87,7 @@ so sweet? :)
 
 
 ``` bash
-git clone https://github.com/shuiRong/VueCnodeJS
+git clone https://github.com/shuiRong/VueCnodeJS.git
 cd VueCnodeJS
 npm install
 # serve with hot reload at localhost:8080
@@ -111,20 +99,4 @@ npm run build --report
 ```
 
 **PS:** port 8080 will be used.
-
-**PPS:** If you get error like ` http://eslint.org/docs/rules/linebreak-style......`,Please delete 
-
-```javascript
-{
-                test: /\.(js|vue)$/,
-                loader: 'eslint-loader',
-                enforce: 'pre',
-                include: [resolve('src'), resolve('test'), ],
-                options: {
-                    formatter: require('eslint-friendly-formatter')
-                }
-            },
-```
-
-  in the `webpack.base.conf.js` file. It's ok to delete it.
 
