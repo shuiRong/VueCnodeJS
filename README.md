@@ -16,7 +16,7 @@ PS: 如果你想入门Vue,但苦于没有难度合适的项目的话，Here For 
 
 
 
-**2017-5-24：**如果你看完[Vuex](https://vuex.vuejs.org/zh-cn/)文档，对于如何把它应用到`实际项目`中还是有点茫然的话，那么我为这个项目写了一个Vuex版本。就在`vuexVersion`文件中。
+**2017-5-24：** 如果你看完[Vuex](https://vuex.vuejs.org/zh-cn/)文档，对于如何把它应用到`实际项目`中还是有点茫然的话，那么我为这个项目写了一个Vuex版本。就在`vuexVersion`文件中。
 
 
 
