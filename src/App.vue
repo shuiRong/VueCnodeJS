@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <cnode-head></cnode-head>
-    <!--<router-link to="/main">/main</router-link>-->
     <router-view name="main"></router-view>
     <router-view name="side" ref="child"></router-view>
-    <!--<main-sec></main-sec>-->
   </div>
 </template>
 
