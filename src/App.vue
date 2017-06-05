@@ -8,8 +8,6 @@
 
 <script>
   import cnodeHead from './components/cnodeHead.vue';
-  //  import mainSec from './components/MainSec.vue';
-  console.log(cnodeHead);
   export default {
     name: 'app',
     data () {
@@ -22,7 +20,6 @@
     },
     watch:{
       authorName(val){
-        console.log(this.$refs)
         this.$refs.child.name = val;
       }
     }
