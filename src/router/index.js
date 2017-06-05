@@ -1,35 +1,39 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import ArticleCom from '@/components/ArticleCom';
-import UserCom from '@/components/UserCom';
-import MainSec from '@/components/MainSec';
-import SideSec from '@/components/SideSec';
+const MainSec = resolve => require(['../components/MainSec.vue'], resolve);
+const UserCom = resolve => require(['../components/UserCom.vue'], resolve);
+const ArticleCom = resolve => require(['../components/ArticleCom.vue'], resolve);
+const SideSec = resolve => require(['../components/SideSec.vue'], resolve);
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
-    routes: [{
-        path: '/',
-        name: 'RootPath',
-        components: {
-            main: MainSec,
+    mode: 'history',
+    routes : [
+        {
+            path : '/',
+            name:'RootPath',
+            components:{
+                main:MainSec
+            }
         },
-    }, {
-        path: '/topic/:id',
-        name: 'ArticleRoute',
-        components: {
-            main: ArticleCom,
-            side: SideSec,
+        {
+            path:'/user/:name',
+            name: 'UserRoute',
+            components :{
+                main:UserCom
+            }
+
         },
-    }, {
-        path: '/user/:name',
-        name: 'UserRoute',
-        components: {
-            main: UserCom,
-        },
-    }, {
-        path: '/user/:name',
-        redirect: '/user:name',
-    }],
-});
+        {
+            path:'/topic/:topic',
+            name: 'ArticleRoute',
+            components :{
+                main:ArticleCom,
+                side:SideSec
+            }
+
+        }
+    ]
+})
