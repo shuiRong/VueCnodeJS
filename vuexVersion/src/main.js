@@ -3,12 +3,10 @@
 import Vue from 'vue'
 import Icon from 'vue-svg-icon/Icon'
 import ElementUI from 'element-ui'
-import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
 import store from './store'
 
-Vue.use(VueResource)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

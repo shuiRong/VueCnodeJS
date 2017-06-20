@@ -65,8 +65,8 @@
                 url: `https://cnodejs.org/api/v1${this.$route.path}`,
                 method: 'get',
             }).then((res) => {
-                if (res.body.success === true) {
-                    this.article = res.body.data;
+                if (res.data.success === true) {
+                    this.article = res.data.data;
                     this.$parent.authorName = this.article.author.loginname;
                 } else {
                     this.article = 'Sorry, Something wrong happened when getting the remote data';

@@ -1,4 +1,3 @@
-// const get = require('@/assets/js/xhr.js')
 import get from '@/assets/js/xhr.js'
 
 export default {

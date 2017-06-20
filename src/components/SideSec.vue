@@ -35,7 +35,7 @@
                     url: `https://cnodejs.org/api/v1/user/${val}`,
                     method: 'get',
                 }).then((res) => {
-                    this.userInfo = res.body.data;
+                    this.userInfo = res.data.data;
                 }).catch((res) => {
                     console.log('SideSec.vue :', res);
                 });
