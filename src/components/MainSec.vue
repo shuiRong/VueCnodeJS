@@ -1,6 +1,6 @@
 <template>
     <div class='secDiv' v-loading='loading'>
-        <div v-for='item of content'>
+        <div v-for='item of content' :key='item.id'>
             <router-link :to='{name: "UserRoute",params:{name: item.author.loginname}}'>
                 <img :src='item.author.avatar_url' :title='item.author.loginname'>
             </router-link>
