@@ -1,16 +1,16 @@
 <template>
-    <div class='secDiv' v-loading.lock='loading'>
+    <div class='topic'>
         <span class='marginSpan'>发布于：{{createdTime}}</span>
-        <router-link :to='{name:"UserRoute",params:{name: article.author.loginname}}'>作者：{{article.author.loginname}}</router-link>
+        <nuxt-link :to='"/users/" +article.author.loginname'>作者：{{article.author.loginname}}</nuxt-link>
         <span class='marginSpan'>浏览量：{{article.visit_count}}</span>
         <span>来自：{{article.tab}}</span>
         <h3>{{article.title}}</h3>
         <div v-html='article.content' id='content'></div>
         <div id='reply'>
             <div v-for='reply in article.replies' class='replySec' :key='reply.length'>
-                <router-link :to='{name: "UserRoute",params:{name: reply.author.loginname}}'>
+                <nuxt-link :to='"/users/" +reply.author.loginname'>
                     <img :src='reply.author.avatar_url'>
-                </router-link>
+                </nuxt-link>
                 <div>
                     <div class='replyUp'>
                         <span class='replyName'>{{reply.author.loginname}}</span>
@@ -24,28 +24,37 @@
                 </div>
             </div>
         </div>
+        <side></side>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+import Side from '../../components/SideSec.vue'
+
 export default {
+    name: 'TopicRoute',
+    asyncData(context) {
+        return axios.get(`https://cnodejs.org/api/v1${context.route.path}`)
+            .then(res => {
+                return { article: res.data.data }
+            }).catch(res => {
+                throw new Error('Sorry, Something wrong happened when getting the remote data')
+            })
+    },
     data() {
         return {
-            loading: true,
-            reply: {
-                author: {
-                    loginname: 'test',
-                }
-            },
-        };
+
+        }
     },
     computed: {
         createdTime() {
+            // return String(this.article.create_at)
             return String(this.article.create_at).match(/.{10}/)[0];
         },
-        article() {
-            return this.$store.state.article
-        }
+        // article() {
+        //     return this.$store.state.article
+        // }
     },
     methods: {
         dealCommentTime(time) {
@@ -59,14 +68,18 @@ export default {
             }
         },
     },
-    beforeCreate() {
-        let url = `https://cnodejs.org/api/v1${this.$route.path}`
-        this.$store.dispatch('getArticle', url)
-    },
-};
+    components: {
+        Side
+    }
+}
 </script>
 
-<style>
+<style scoped>
+.topic {
+    color: red;
+    margin-top: 57.59px;
+}
+
 #content img {
     max-width: 100%;
     max-height: 100%;
@@ -83,16 +96,16 @@ export default {
 </style>
 
 <style>
-@import url('../assets/markdown-github.css');
+@import url('../../assets/markdown-github.css');
 .marginSpan {
     margin: 0 0.5rem;
 }
 
-.secDiv span:first-child {
+.topic span:first-child {
     margin-left: 0;
 }
 
-.secDiv {
+.topic {
     width: 60%;
     background: #fff;
     border: 1px solid #ddd;
@@ -101,13 +114,13 @@ export default {
     background: #F9FAFC;
 }
 
-.secDiv span,
-.secDiv a {
+.topic span,
+.topic a {
     font-size: 17px;
     color: #8492A6;
 }
 
-.secDiv a {
+.topic a {
     color: black;
     text-decoration: none;
 }
@@ -154,7 +167,7 @@ export default {
     font-size: 20px;
 }
 
-.secDiv .thumbsClass {
+.topic .thumbsClass {
     float: right;
 }
 </style>

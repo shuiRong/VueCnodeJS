@@ -1,11 +1,11 @@
 <template>
-    <div class='secDiv' v-loading='loading'>
-        <div v-for='item of articleLists' :key='item.length'>
-            <router-link :to='{name: "UserRoute",params:{name: item.author.loginname}}'>
+    <div class='secDiv'>
+        <div v-for='item of articleListsData' :key='item.length'>
+            <nuxt-link :to='"/users/" + item.author.loginname'>
                 <img :src='item.author.avatar_url' :title='item.author.loginname'>
-            </router-link>
+            </nuxt-link>
             <div class='textDiv'>
-                <router-link :to='{name:"ArticleRoute",params:{id:item.id}}'>{{item.title}}</router-link>
+                <nuxt-link :to='"/topic/" + item.id'>{{item.title}}</nuxt-link>
                 <div class='stuff'>
                     <span>回复：{{item.reply_count}}</span>
                     <span>创建于：{{dealTime(item.create_at)}}</span>
@@ -16,31 +16,34 @@
 </template>
 
 <script>
-console.log('当断不断，反受其乱');
+import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
     name: 'MainSection',
     data() {
         return {
-            item: {
-                author: {
-                    loginname: 'test', //设置默认值，否则可能报错，原因是Vue一系列初试化过程中，调用到它，却没赋值。
-                }
-            },
             loading: true,
-        };
+        }
     },
-    computed: {
-        articleLists() {
-            return this.$store.state.articleLists
-        },
+    computed: mapState([
+        'articleLists'
+    ]),
+    asyncData(context) {
+        return axios.get('https://cnodejs.org/api/v1/topics?page=1&limit=10&mdrender=false')
+            .then(res => {
+                return { articleListsData: res.data.data }
+            }).catch(res => {
+                throw new Error('MaiSec.vue: ', res)
+            })
     },
     methods: {
         scrollMethod() {
-            const sumH = document.body.scrollHeight;
-            const viewH = document.documentElement.clientHeight;
-            const scrollH = document.body.scrollTop;
+            const sumH = document.body.scrollHeight
+            const viewH = document.documentElement.clientHeight
+            const scrollH = document.body.scrollTop
             if (viewH + scrollH === sumH) {
+                // 如果滑动条到了底部,再请求数据
                 this.getData()
             }
         },
@@ -49,22 +52,17 @@ export default {
         },
         dealTime(time) {
             return String(time).match(/.{10}/)[0]
-        },
+        }
     },
     mounted() {
         window.addEventListener('scroll', this.scrollMethod)
     },
-    created() {
-        this.getData()
-    },
     watch: {
         articleLists(val) {
-            if (val) {
-                this.loading = false;
-            }
-        },
-    },
-};
+            this.articleListsData = this.articleLists
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -77,6 +75,7 @@ export default {
     font-size: 22px;
     padding: 2rem;
     min-height: 40rem;
+    margin: 80px auto 0 auto;
 }
 
 a {

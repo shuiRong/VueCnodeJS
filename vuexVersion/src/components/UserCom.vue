@@ -15,11 +15,11 @@
                 <icon name='time' scale='4'></icon>
                 <span>注册时间：</span>{{dealCommentTime(userInfo.create_at)}}</p>
         </div>
-    
+
         <div class='recentReplies' v-loading.lock='loading'>
             <p>最近参与的话题</p>
             <template v-for='(item,index) of userInfo.recent_replies'>
-                <div v-if='index < 4'>
+                <div v-if='index < 4' :key='index'>
                     <router-link :to='{name: "UserRoute",params:{name: item.author.loginname}}'>
                         <img :src='item.author.avatar_url' :title='item.author.loginname'>
                     </router-link>
@@ -29,7 +29,7 @@
                 </div>
             </template>
         </div>
-    
+
         <div class='recentTopics' v-loading.lock='loading'>
             <p>最近创建的话题</p>
             <template v-for='(item,index) of userInfo.recent_topics'>
