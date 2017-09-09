@@ -15,7 +15,7 @@
                 <span>
                     <strong>源代码: &nbsp;&nbsp;</strong>
                 </span>
-                <a href='https://github.com/shuiRong/VueCnodeJS' target='_blank'>Github</a>
+                <a href='https://github.com/shuiRong/VueCnodeJS/tree/master/nuxtVersion' target='_blank'>Github</a>
                 <span class='star'>&nbsp;&nbsp;Star Star</span>
                 <br>
                 <br>
@@ -23,7 +23,8 @@
                     <strong>技术栈: </strong>
                 </span>
                 <ul>
-                    <li>Vue.js</li>
+                    <li>Vue</li>
+                    <li>Nuxt</li>
                     <li>Vue-router</li>
                     <li>Axios</li>
                     <li>Element</li>
@@ -82,7 +83,7 @@ export default {
 
 .head a {
     text-decoration: none;
-    color: #58B7FF;
+    color: #13CE66;
 }
 
 .head .star {

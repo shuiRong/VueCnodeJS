@@ -83,7 +83,7 @@ export default {
 
 .head a {
     text-decoration: none;
-    color: #58B7FF;
+    color: #13CE66;
 }
 
 .head .star {

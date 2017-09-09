@@ -23,9 +23,9 @@
                     <strong>技术栈: </strong>
                 </span>
                 <ul>
-                    <li>Vue.js</li>
+                    <li>Vue</li>
+                    <li>Vuex</li>
                     <li>Vue-router</li>
-                    <li>Axios</li>
                     <li>Element</li>
                     <li>CnodeJS API</li>
                 </ul>
@@ -83,7 +83,7 @@ export default {
 
 .head a {
     text-decoration: none;
-    color: #58B7FF;
+    color: #13CE66;
 }
 
 .head .star {

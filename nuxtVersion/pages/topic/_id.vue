@@ -40,6 +40,14 @@ export default {
         }
     },
     asyncData(context) {
+        /*  注意 !!!
+        *   有个很重要的点,你需要知道: 对于Nuxt.js来说,(任何一个组件的)子组件没有asyncData和fetch函数,即意味着不能在
+        *   Nuxt.js初始化时获取到子组件的异步数据,然后对其进行服务端渲染.
+        *   但官方提供了其他方法来实现子组件的服务端渲染: https://zh.nuxtjs.org/faq/async-data-components
+        *   简而言之就是: 子组件需要的异步数据,全部由父组件来获取,然后通过props传递给子组件,这样子组件就能被服务端渲染了
+        *   我这里就是使用了这个方法.
+        */
+
         // 文章作者信息
         let article
         return axios.get(`https://cnodejs.org/api/v1${context.route.path}`)

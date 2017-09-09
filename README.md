@@ -18,6 +18,8 @@ PS: 如果你想入门Vue,但苦于没有难度合适的项目的话，Here For 
 
 **2017-5-24：** 如果你看完[Vuex](https://vuex.vuejs.org/zh-cn/)文档，对于如何把它应用到`实际项目`中还是有点茫然的话，那么我为这个项目写了一个Vuex版本。就在`vuexVersion`文件中。
 
+**2017-9-9: **  我又为本项目写了个[Nuxt.js](https://zh.nuxtjs.org/)的版本.完美解决了SEO问题(Vue这种MVVM框架一直被人诟病没有解决SEO,但是现在我们有了Nuxt). 代码在`nuxtVersion`文件中. **需要注意的地方我写在了代码注释里**
+
 
 
 ### 技术栈：

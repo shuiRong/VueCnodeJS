@@ -6,7 +6,7 @@
                 <span>{{userInfo.loginname}}</span>
             </div>
             <p>
-                <img class='score' src='~assets/github.png'>
+                <img class='score' src='~assets/money.png'>
                 <span>积分：</span>{{userInfo.score}}
             </p>
             <p>
@@ -14,7 +14,7 @@
                 <span>Github：</span> https://github.com/{{userInfo.githubUsername}}
             </p>
             <p>
-                <img class='time' src='~assets/github.png'>
+                <img class='time' src='~assets/time.png'>
                 <span>注册时间：</span>{{dealCommentTime(userInfo.create_at)}}
             </p>
         </div>
