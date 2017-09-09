@@ -14,9 +14,9 @@
 
 **解决了SEO问题/Solved SEO**
 
-![页面](/screens/page.png)
+![页面](/nuxtVersion/screens/page.png)
 
-![页面源码](/screens/sourcecode.png)
+![页面源码](/nuxtVersion/screens/sourcecode.png)
 
 
 
