@@ -1,7 +1,7 @@
 <template>
     <div class='secDiv'>
         <div>
-            <router-link :to='userInfo.loginname'>
+            <router-link :to='"/user/" + userInfo.loginname'>
                 <img :src='userInfo.avatar_url'>
                 <span>{{userInfo.loginname}}</span>
             </router-link>
@@ -19,12 +19,7 @@
 <script>
 export default {
     name: 'SideSection',
-    props: ['userInfo'],
-    computed: {
-        articleAuthor() {
-            return this.$store.state.articleAuthor
-        }
-    }
+    props: ['userInfo']
 };
 </script>
 

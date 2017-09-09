@@ -62,7 +62,6 @@ export default {
 }
 
 .head>button {
-    display: inline-block;
     float: right;
     line-height: 3.6rem;
     margin-right: 10rem;

@@ -1,14 +1,14 @@
 <template>
-    <div class='topic'>
+    <div class='topic' v-loading.lock='loading'>
         <span class='marginSpan'>发布于：{{createdTime}}</span>
-        <nuxt-link :to='"/users/" +article.author.loginname'>作者：{{article.author.loginname}}</nuxt-link>
+        <nuxt-link :to='"/user/" +article.author.loginname'>作者：{{article.author.loginname}}</nuxt-link>
         <span class='marginSpan'>浏览量：{{article.visit_count}}</span>
         <span>来自：{{article.tab}}</span>
         <h3>{{article.title}}</h3>
         <div v-html='article.content' id='content'></div>
         <div id='reply'>
             <div v-for='reply in article.replies' class='replySec' :key='reply.length'>
-                <nuxt-link :to='"/users/" +reply.author.loginname'>
+                <nuxt-link :to='"/user/" +reply.author.loginname'>
                     <img class='avatar' :src='reply.author.avatar_url'>
                 </nuxt-link>
                 <div>
@@ -34,6 +34,11 @@ import Side from '../../components/SideSec.vue'
 
 export default {
     name: 'TopicRoute',
+    data() {
+        return {
+            loading: true
+        }
+    },
     asyncData(context) {
         // 文章作者信息
         let article
@@ -43,7 +48,8 @@ export default {
                 return axios.get(`https://cnodejs.org/api/v1/user/${res.data.data.author.loginname}`)
             }).then(res => ({
                 article: article.data.data,
-                user: res.data.data
+                user: res.data.data,
+                loading: false
             }))
             .catch(error => {
                 throw new Error('Sorry, Something wrong happened when getting the remote data', error)

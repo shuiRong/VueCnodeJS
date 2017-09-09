@@ -1,7 +1,7 @@
 <template>
-    <div class='secDiv'>
+    <div class='secDiv' v-loading.lock='loading'>
         <div v-for='item of articleListsData' :key='item.length'>
-            <nuxt-link :to='"/users/" + item.author.loginname'>
+            <nuxt-link :to='"/user/" + item.author.loginname'>
                 <img :src='item.author.avatar_url' :title='item.author.loginname'>
             </nuxt-link>
             <div class='textDiv'>
@@ -23,7 +23,7 @@ export default {
     name: 'MainSection',
     data() {
         return {
-            loading: true,
+            loading: true
         }
     },
     computed: mapState([
@@ -31,9 +31,10 @@ export default {
     ]),
     asyncData(context) {
         return axios.get('https://cnodejs.org/api/v1/topics?page=1&limit=10&mdrender=false')
-            .then(res => {
-                return { articleListsData: res.data.data }
-            }).catch(res => {
+            .then(res => ({
+                articleListsData: res.data.data,
+                loading: false
+            })).catch(res => {
                 throw new Error('MaiSec.vue: ', res)
             })
     },
