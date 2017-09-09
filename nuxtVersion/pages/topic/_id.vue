@@ -9,22 +9,22 @@
         <div id='reply'>
             <div v-for='reply in article.replies' class='replySec' :key='reply.length'>
                 <nuxt-link :to='"/users/" +reply.author.loginname'>
-                    <img :src='reply.author.avatar_url'>
+                    <img class='avatar' :src='reply.author.avatar_url'>
                 </nuxt-link>
                 <div>
                     <div class='replyUp'>
                         <span class='replyName'>{{reply.author.loginname}}</span>
                         <span>{{dealCommentTime(reply.create_at)}}</span>
                         <span v-if='reply.ups.length > 0' class='thumbsClass'>
-                            <icon name='thumbs-up' scale='2'></icon>
+                            <img class='thumb-icon' src='~assets/thumb.png'>
                             <span>{{reply.ups.length}}</span>
                         </span>
                     </div>
-                    <p v-html='reply.content'></p>
+                    <div v-html='reply.content'></div>
                 </div>
             </div>
         </div>
-        <side></side>
+        <side :userInfo='user'></side>
     </div>
 </template>
 
@@ -35,37 +35,28 @@ import Side from '../../components/SideSec.vue'
 export default {
     name: 'TopicRoute',
     asyncData(context) {
+        // 文章作者信息
+        let article
         return axios.get(`https://cnodejs.org/api/v1${context.route.path}`)
             .then(res => {
-                return { article: res.data.data }
-            }).catch(res => {
-                throw new Error('Sorry, Something wrong happened when getting the remote data')
+                article = res
+                return axios.get(`https://cnodejs.org/api/v1/user/${res.data.data.author.loginname}`)
+            }).then(res => ({
+                article: article.data.data,
+                user: res.data.data
+            }))
+            .catch(error => {
+                throw new Error('Sorry, Something wrong happened when getting the remote data', error)
             })
-    },
-    data() {
-        return {
-
-        }
     },
     computed: {
         createdTime() {
-            // return String(this.article.create_at)
             return String(this.article.create_at).match(/.{10}/)[0];
-        },
-        // article() {
-        //     return this.$store.state.article
-        // }
+        }
     },
     methods: {
         dealCommentTime(time) {
             return String(time).match(/.{16}/)[0].replace(/.{2}/, '').replace(/[T]/, ' ');
-        },
-    },
-    watch: {
-        article(val) {
-            if (val) {
-                this.loading = false;
-            }
         },
     },
     components: {
@@ -139,7 +130,7 @@ export default {
     flex-direction: column;
 }
 
-#reply img {
+#reply .avatar {
     width: 5rem;
     height: 5rem;
     margin-right: 1rem;
@@ -169,5 +160,12 @@ export default {
 
 .topic .thumbsClass {
     float: right;
+    display: flex;
+}
+
+.topic .thumb-icon {
+    width: 1.3035714285714286rem;
+    height: 1.3035714285714286rem;
+    margin-right: 5px;
 }
 </style>

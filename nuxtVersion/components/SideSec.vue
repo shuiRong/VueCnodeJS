@@ -1,16 +1,17 @@
 <template>
-    <div class='secDiv' v-loading.lock='loading'>
+    <div class='secDiv'>
         <div>
-            <router-link :to='{name: "UserRoute",params:{name: userInfo.loginname}}'>
+            <router-link :to='userInfo.loginname'>
                 <img :src='userInfo.avatar_url'>
+                <span>{{userInfo.loginname}}</span>
             </router-link>
-            <span>{{userInfo.loginname}}</span>
         </div>
         <p>
-            <icon name='score' scale='4'></icon>{{userInfo.score}}
+            <img src='~assets/money.png'>{{userInfo.score}}
         </p>
         <p>
-            <icon name='github' scale='4'></icon>https://github.com/{{userInfo.githubUsername}}
+            <img src='~assets/github.png'>
+            <a :href='"https://github.com/"+userInfo.githubUsername' target='_blanket'>https://github.com/{{userInfo.githubUsername}}</a>
         </p>
     </div>
 </template>
@@ -18,25 +19,7 @@
 <script>
 export default {
     name: 'SideSection',
-    asyncData(context) {
-        // 遇到了问题,surmon提到过. 就是 page级别的Vue组件拥有asyncData方法,但是他们的子组件没有. surmon提到了解决方法
-        // !!!!
-        return axios.get(`https://cnodejs.org/api/v1${context.route.path}`)
-            .then(res => {
-                console.log('res--user>', res.data.data.author)
-                axios.get(`https://cnodejs.org/api/v1/user/${res.data.data.author.loginname}`)
-                    .then(res => {
-                        return { userInfo: res.data.datad }
-                    })
-            }).catch(res => {
-                throw new Error('Sorry, Something wrong happened when getting the remote data')
-            })
-    },
-    data() {
-        return {
-            loading: true
-        };
-    },
+    props: ['userInfo'],
     computed: {
         articleAuthor() {
             return this.$store.state.articleAuthor
@@ -47,13 +30,16 @@ export default {
 
 <style scoped>
 .secDiv {
-    width: 20%;
+    width: 25%;
     height: 20rem;
     background: #E5E9F2;
     border: 1px solid #ddd;
     word-break: break-all;
     font-size: 21px;
     padding: 2rem;
+    position: absolute;
+    top: 7.142857142857143rem;
+    right: 3.5714285714285716rem;
 }
 
 .secDiv div {
@@ -81,5 +67,11 @@ export default {
 img {
     width: 6rem;
     height: 6rem;
+}
+
+p img {
+    width: 2.6114285714285717rem;
+    height: 2.6114285714285717rem;
+    margin-right: 0.5rem;
 }
 </style>
