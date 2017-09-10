@@ -20,7 +20,7 @@ module.exports = {
     /*
     ** Build configuration
     */
-    css: ['element-ui/lib/theme-default/index.css', '~/css/main.css'],
+    css: ['element-ui/lib/theme-default/index.css'],
     build: {
         /*
         ** Run ESLINT on save
