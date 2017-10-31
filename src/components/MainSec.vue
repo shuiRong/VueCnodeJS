@@ -34,7 +34,7 @@ export default {
         scrollMethod() {
             const sumH = document.body.scrollHeight;
             const viewH = document.documentElement.clientHeight;
-            const scrollH = document.body.scrollTop;
+            const scrollH = document.documentElement.scrollTop;
             if (viewH + scrollH >= sumH) {
                 this.getData();
             }
