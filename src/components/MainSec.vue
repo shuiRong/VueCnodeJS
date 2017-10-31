@@ -35,7 +35,7 @@ export default {
             const sumH = document.body.scrollHeight;
             const viewH = document.documentElement.clientHeight;
             const scrollH = document.body.scrollTop;
-            if (viewH + scrollH === sumH) {
+            if (viewH + scrollH >= sumH) {
                 this.getData();
             }
         },
