@@ -32,9 +32,9 @@ export default {
     },
     methods: {
         scrollMethod() {
-            const sumH = document.body.scrollHeight;
+            const sumH = document.body.scrollHeight || document.documentElement.scrollHeight;
             const viewH = document.documentElement.clientHeight;
-            const scrollH = document.documentElement.scrollTop;
+            const scrollH = document.body.scrollTop || document.documentElement.scrollTop;
             if (viewH + scrollH >= sumH) {
                 this.getData();
             }
