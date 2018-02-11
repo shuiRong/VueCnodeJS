@@ -18,7 +18,7 @@
 
 ![页面源码](/nuxtVersion/screens/sourcecode.png)
 
-
+**[DEMO](https://mystifying-hoover-fff38f.netlify.com/)**
 
 ### 本地运行
 
