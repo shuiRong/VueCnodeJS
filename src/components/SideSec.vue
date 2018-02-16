@@ -16,14 +16,14 @@
 <script>
 export default {
     name: 'SideSection',
+    props: ['authorName'],
     data() {
         return {
             userInfo: {
                 avatar_url: '',
-                loginname: 'temp',
+                loginname: 'temp'
             },
-            loading: true,
-            name: '',
+            loading: true
         };
     },
     watch: {
@@ -32,17 +32,39 @@ export default {
                 this.loading = false;
             }
         },
-        name(val) {
-            this.$http({
-                url: `https://cnodejs.org/api/v1/user/${val}`,
-                method: 'get',
-            }).then((res) => {
-                this.userInfo = res.data.data;
-            }).catch((res) => {
-                console.log('SideSec.vue :', res);
-            });
-        },
+        authorName(val) {
+            const _this = this;
+            if (this.authorName) {
+                this.$http({
+                    url: `https://cnodejs.org/api/v1/user/${val}`,
+                    method: 'get'
+                })
+                    .then(res => {
+                        _this.userInfo = res.data.data;
+                        _this.loading = false;
+                    })
+                    .catch(res => {
+                        console.log('SideSec.vue :', res);
+                    });
+            }
+        }
     },
+    created() {
+        const _this = this;
+        if (this.authorName) {
+            this.$http({
+                url: `https://cnodejs.org/api/v1/user/${this.authorName}`,
+                method: 'get'
+            })
+                .then(res => {
+                    _this.userInfo = res.data.data;
+                    _this.loading = false;
+                })
+                .catch(res => {
+                    console.log('SideSec.vue :', res);
+                });
+        }
+    }
 };
 </script>
 
@@ -50,7 +72,7 @@ export default {
 .secDiv {
     width: 20%;
     height: 20rem;
-    background: #E5E9F2;
+    background: #e5e9f2;
     border: 1px solid #ddd;
     word-break: break-all;
     font-size: 21px;

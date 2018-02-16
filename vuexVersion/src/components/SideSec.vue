@@ -45,6 +45,12 @@ export default {
             this.$store.dispatch('getUserInfo', url)
         },
     },
+    created () {
+        if(this.articleAuthor){
+            const url = `https://cnodejs.org/api/v1/user/${this.articleAuthor}`
+            this.$store.dispatch('getUserInfo', url)
+        }
+    }
 };
 </script>
 

@@ -67,7 +67,7 @@ export default {
         }).then((res) => {
             if (res.data.success === true) {
                 this.article = res.data.data;
-                this.$parent.authorName = this.article.author.loginname;
+                this.$emit('sendAuthorName',this.article.author.loginname);
             } else {
                 this.article = 'Sorry, Something wrong happened when getting the remote data';
             }
