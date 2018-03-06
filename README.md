@@ -2,7 +2,7 @@
 
 > 一个Vue的**初/中级**练手项目：重构CnodeJS社区
 
-[**预览**](https://shuirong.github.io/vcnode/index.html#/)
+[**预览**](https://heuristic-stonebraker-33e1b8.netlify.com/#/)
 
 这是我第一个真正意义上的Vue项目，共花了５天时间，每天大概３,4个小时左右在这个项目上。除了`Vue.js`概念比较了解外，`Vue-router`和`Vue-resource`都是现学现用。之前还想着可能要花点时间学下新东西，但看了文档后才发现其实挺简单的...
 
