@@ -130,6 +130,11 @@ export default {
     margin-left: 0.2rem;
 }
 
+.profile img{
+    width: 120px;
+    height: 120px;
+}
+
 .recentTopics img,
 .recentReplies img {
     width: 5rem;

@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <cnode-head></cnode-head>
-        <router-view name='main'></router-view>
+        <router-view @sendAuthorName='getAuthorName' name='main'></router-view>
         <router-view name='side' ref='child'></router-view>
     </div>
 </template>
@@ -11,18 +11,13 @@ import cnodeHead from './components/cnodeHead';
 
 export default {
     name: 'app',
-    data() {
-        return {
-            authorName: '',
-        };
+    methods: {
+        getAuthorName(name){
+            this.$refs.child.authorName = name;
+        }  
     },
     components: {
         cnodeHead,
-    },
-    watch: {
-        authorName(val) {
-            this.$refs.child.name = val;
-        },
     },
 };
 </script>
