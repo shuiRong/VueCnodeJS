@@ -1,4 +1,4 @@
-# VueCnodejs
+# VueCnodeJS
 
 > 一个Vue的**初/中级**练手项目：重构CnodeJS社区
 
