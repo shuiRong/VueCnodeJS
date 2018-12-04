@@ -10,7 +10,6 @@
                     <strong>作者: &nbsp;&nbsp;</strong>
                 </span>
                 <a href='https://shuirong.github.io/' target='_blank'>林水溶</a>
-                </span>
                 <br>
                 <span>
                     <strong>源代码: &nbsp;&nbsp;</strong>
