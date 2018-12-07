@@ -29,17 +29,30 @@
 </template>
 
 <script>
+/**
+ * 用户创建的其他话题 组件
+ */
 import eventProxy from "@/utils/eventProxy";
 import Divider from "@/components/Divider";
 
 export default {
+  /**
+   * 给此组件起的名字，会显示在Vue的DevTool里面
+   */
   name: "OtherTopic",
+  /**
+   * 通过在这里定义变量，可以让父组件通过这些变量向此组件传递数据
+   * P.S. https://cn.vuejs.org/v2/guide/components.html#%E9%80%9A%E8%BF%87-Prop-%E5%90%91%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE
+   */
   props: {
     simple: {
       default: true,
       type: Boolean
     }
   },
+  /**
+   * 当前组件的‘数据中心'
+   */
   data() {
     return {
       user: {}
@@ -60,11 +73,15 @@ export default {
     });
   },
   /**
+   * 组件被销毁的钩子
    * 给this增加属性，表示当前实例已被卸载
    */
   destroyed() {
     this.isUnmounted = true;
   },
+  /**
+   * 注册引用进来的其他组件
+   */
   components: {
     Divider
   }

@@ -21,19 +21,32 @@
 </template>
 
 <script>
+/**
+ * 主页
+ */
 import Content from "@/components/Content.vue";
 import { getTopics } from "@/utils/api";
 
 export default {
-  name: "home",
+  /**
+   * 给此组件起的名字，会显示在Vue的DevTool里面
+   */
+  name: "Home",
+  /**
+   * 当前组件的‘数据中心'
+   */
   data() {
     return {
       page: 1,
       limit: 20,
       tab: "all",
-      list: []
+      list: [],
+      store: {} // 存储所有Tab对应的数据，因为切换Tab后就没必要重新以limit:20加载数据。
     };
   },
+  /**
+   * 任何属于此组件的方法都定义在这里
+   */
   methods: {
     /**
      * 封装好的获取首页数据的函数，这样就不需要每次使用都copy一遍代码了
@@ -46,6 +59,13 @@ export default {
       }).then(res => {
         this.list = res.data;
         this.limit = this.limit + 10;
+
+        const store = this.store;
+        // 将数据存储到对应的key下
+        store[this.tab] = {
+          limit: this.limit,
+          data: res.data
+        };
       });
     },
     /**
@@ -62,28 +82,44 @@ export default {
       }
     },
     /**
-     * 当前Tab变化时的回调函数
-     * 每次切换Tab时，重置limit参数
+     * 当前Tab变化时判断Store里是否已经存储数据。
+     * 是：拉出来，设置到state中
+     * 否：重新获取数据
      * 这里使用箭头函数而不是上面的那种方式，是为了解决this问题
      * 详情看：https://react.docschina.org/docs/react-without-es6.html#%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9A
      * （或者自行Google）
      */
     tabChanged() {
-      this.limit = 20;
-      this.list = [];
-      this.getTopics();
+      const store = this.store;
+
+      // 如果未存储当前Tab的数据，重新获取
+      if (!store[this.tab]) {
+        this.limit = 20;
+        this.list = [];
+        this.getTopics();
+        return;
+      }
+
+      this.list = store[this.tab].data;
+      this.limit = store[this.tab].limit;
     }
   },
+  /**
+   * 一般此钩子下面调用接口获取数据
+   */
   created() {
     this.getTopics();
     window.addEventListener("scroll", this.scrollMethod);
   },
   /**
-   * 组件被销毁时，记得移除绑定的滚动事件
+   * 组件被销毁的钩子：移除绑定的滚动事件
    */
   destroyed() {
     window.removeEventListener("scroll", this.scrollMethod);
   },
+  /**
+   * 注册引用进来的其他组件
+   */
   components: {
     Content
   }

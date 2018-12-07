@@ -3,8 +3,12 @@
 </template>
 
 <script>
+/**
+ * 分割线组件
+ * 完全没有逻辑，只是一条‘简简单单’的分割线
+ */
 export default {
-  name: "User"
+  name: "Divider"
 };
 </script>
 

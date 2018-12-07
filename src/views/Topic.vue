@@ -34,6 +34,9 @@
 </template>
 
 <script>
+/**
+ * 主题页
+ */
 import { getTopicById } from "@/utils/api";
 import OtherTopic from "@/components/OtherTopic";
 import ProfilePanel from "@/components/ProfilePanel";
@@ -42,12 +45,21 @@ import Divider from "@/components/Divider";
 import Reply from "@/components/Reply";
 
 export default {
+  /**
+   * 给此组件起的名字，会显示在Vue的DevTool里面
+   */
   name: "Toipc",
+  /**
+   * 当前组件的‘数据中心'
+   */
   data() {
     return {
       topic: {}
     };
   },
+  /**
+   * 任何属于此组件的方法都定义在这里
+   */
   methods: {
     /**
      * 封装好的获取数据的函数，这样就不需要每次使用都copy一遍代码了
@@ -61,13 +73,25 @@ export default {
       });
     }
   },
+  /**
+   * 一般此钩子下面调用接口获取数据
+   */
   created() {
     this.fetchData(this.$route.params.id);
   },
+  /**
+   * 在当前路由改变，但是该组件被复用时调用
+   * 举例来说，对于一个带有动态参数的路径 /topic/:id，在 /topic/asdsd 和 /topic/sdfsdfa 之间跳转的时候，
+   * 由于会渲染同样的 Topic 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+   * 可以访问组件实例 `this`
+   */
   beforeRouteUpdate(to, from, next) {
     this.fetchData(to.params.id);
     next();
   },
+  /**
+   * 注册引用进来的其他组件
+   */
   components: {
     RecentReply,
     OtherTopic,

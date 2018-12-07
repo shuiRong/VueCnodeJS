@@ -43,8 +43,17 @@
 </template>
 
 <script>
+/**
+ * 网站顶部组件
+ */
 export default {
+  /**
+   * 给此组件起的名字，会显示在Vue的DevTool里面
+   */
   name: "Header",
+  /**
+   * 当前组件的‘数据中心'
+   */
   data() {
     return {
       dialogVisible: false

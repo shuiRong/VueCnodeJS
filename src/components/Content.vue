@@ -23,16 +23,27 @@
 </template>
 
 <script>
+/**
+ * 会在首页使用的组件 :p
+ */
 export default {
+  /**
+   * 给此组件起的名字，会显示在Vue的DevTool里面
+   */
   name: "Topics",
+  /**
+   * 通过在这里定义变量，可以让父组件通过这些变量向此组件传递数据
+   * P.S. https://cn.vuejs.org/v2/guide/components.html#%E9%80%9A%E8%BF%87-Prop-%E5%90%91%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE
+   */
   props: ["list"],
+  /**
+   * 当前组件的‘数据中心'
+   */
   data() {
     return {
       article: []
     };
-  },
-  methods: {},
-  created() {}
+  }
 };
 </script>
 

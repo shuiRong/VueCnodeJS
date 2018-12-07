@@ -8,10 +8,21 @@
 </template>
 
 <script>
+/**
+ * 项目的入口Vue文件，
+ * 在这里进行‘整体布局’，比如上面最简单的布局方式：
+ * 上一块 - 下一块
+ */
 import Header from "@/components/Header.vue";
 
 export default {
+  /**
+   * 给此组件起的名字，会显示在Vue的DevTool里面
+   */
   name: "app",
+  /**
+   * 注册引用进来的其他组件
+   */
   components: {
     Header
   }

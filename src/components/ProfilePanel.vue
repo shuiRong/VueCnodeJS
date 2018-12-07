@@ -21,17 +21,33 @@
 </template>
 
 <script>
+/**
+ * 话题页面右侧上面的个人信息展示页面
+ */
 import { getUserByName } from "@/utils/api";
 import eventProxy from "@/utils/eventProxy";
 
 export default {
+  /**
+   * 给此组件起的名字，会显示在Vue的DevTool里面
+   */
   name: "ProfilePanel",
+  /**
+   * 通过在这里定义变量，可以让父组件通过这些变量向此组件传递数据
+   * P.S. https://cn.vuejs.org/v2/guide/components.html#%E9%80%9A%E8%BF%87-Prop-%E5%90%91%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE
+   */
   props: ["loginname"],
+  /**
+   * 当前组件的‘数据中心'
+   */
   data() {
     return {
       user: {}
     };
   },
+  /**
+   * 任何属于此组件的方法都定义在这里
+   */
   methods: {
     /**
      * 封装好的获取数据的函数，这样就不需要每次使用都copy一遍代码了
@@ -43,12 +59,18 @@ export default {
       });
     }
   },
+  /**
+   * 一般此钩子下面调用接口获取数据
+   */
   created() {
     if (!this.loginname) {
       return;
     }
     this.fetchData(this.loginname);
   },
+  /**
+   * 监听props和data中的值是否有变化的钩子
+   */
   watch: {
     loginname(loginname) {
       if (!loginname) {
