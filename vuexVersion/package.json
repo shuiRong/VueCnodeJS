@@ -1,0 +1,71 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "description": "A Vue.js project",
+  "author": "shuirong <shuirong1997@icloud.com>",
+  "private": true,
+  "scripts": {
+    "dev": "node build/dev-server.js",
+    "start": "node build/dev-server.js",
+    "build": "node build/build.js",
+    "lint": "eslint --ext .js,.vue src"
+  },
+  "dependencies": {
+    "element-ui": "^1.2.8",
+    "vue": "^2.2.2",
+    "vue-router": "^2.3.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.2",
+    "axios": "^0.16.2",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.2.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.22.0",
+    "callback-loader": "^0.2.4",
+    "chalk": "^1.1.3",
+    "connect-history-api-fallback": "^1.3.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.26.1",
+    "element-ui": "^1.2.8",
+    "eventsource-polyfill": "^0.9.6",
+    "express": "^4.14.1",
+    "extract-text-webpack-plugin": "^2.0.0",
+    "file-loader": "^0.10.0",
+    "friendly-errors-webpack-plugin": "^1.1.3",
+    "html-webpack-plugin": "^2.28.0",
+    "http-proxy-middleware": "^0.17.3",
+    "opn": "^4.0.2",
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
+    "ora": "^1.1.0",
+    "rimraf": "^2.6.0",
+    "semver": "^5.3.0",
+    "shelljs": "^0.7.6",
+    "style-loader": "^0.16.1",
+    "url-loader": "^0.5.8",
+    "vue-awesome": "^2.2.5",
+    "vue-loader": "^11.1.4",
+    "vue-resource": "^1.3.1",
+    "vue-style-loader": "^2.0.0",
+    "vue-svg-icon": "^1.2.9",
+    "vue-template-compiler": "^2.2.4",
+    "vuex": "^2.3.1",
+    "webpack": "^2.2.1",
+    "webpack-bundle-analyzer": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-hot-middleware": "^2.16.1",
+    "webpack-merge": "^2.6.1"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
