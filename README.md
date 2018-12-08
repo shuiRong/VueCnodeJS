@@ -18,9 +18,24 @@ PS: 如果你想入门Vue,但苦于没有难度合适的项目的话，Here For 
 
 **2017-5-24：** 如果你看完[Vuex](https://vuex.vuejs.org/zh-cn/)文档，对于如何把它应用到`实际项目`中还是有点茫然的话，那么我为这个项目写了一个 Vuex 版本。就在`vuexVersion`文件中。
 
-### 技术栈：
 
 ---
+
+### 本地运行：
+
+
+```bash
+git clone https://github.com/shuiRong/VueCnodeJS.git
+cd VueCnodeJS
+npm install // 或者 yarn
+npm run serve // 或者 yarn serve
+```
+
+PS: 默认用的是 8080 端口。
+
+---
+
+### 技术栈：
 
 [Vue](https://cn.vuejs.org/)
 
@@ -31,16 +46,3 @@ PS: 如果你想入门Vue,但苦于没有难度合适的项目的话，Here For 
 [ElementUI](http://element.eleme.io/)
 
 [CnodeJS API](https://cnodejs.org/api)
-
-### 本地运行：
-
----
-
-```bash
-git clone https://github.com/shuiRong/VueCnodeJS.git
-cd VueCnodeJS
-npm install // 或者 yarn
-npm run serve // 或者 yarn serve
-```
-
-PS: 默认用的是 8080 端口。
