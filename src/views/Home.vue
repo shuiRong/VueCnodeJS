@@ -85,9 +85,6 @@ export default {
      * 当前Tab变化时判断Store里是否已经存储数据。
      * 是：拉出来，设置到state中
      * 否：重新获取数据
-     * 这里使用箭头函数而不是上面的那种方式，是为了解决this问题
-     * 详情看：https://react.docschina.org/docs/react-without-es6.html#%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9A
-     * （或者自行Google）
      */
     tabChanged() {
       const store = this.store;

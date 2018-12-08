@@ -18,8 +18,8 @@
         <p>
           源码：
           <el-icon type="star" class='el-icon-star-off' />
-          <a href="https://github.com/shuiRong/ReactCnodeJS" target="_blank" rel="nofollow noopener noreferrer">
-            ReactCnodeJS
+          <a href="https://github.com/shuiRong/VueCnodeJS" target="_blank" rel="nofollow noopener noreferrer">
+            VueCnodeJS
           </a>
           <el-icon type="star" class='el-icon-star-off' />
           &nbsp;欢迎Star~&nbsp;
@@ -28,9 +28,9 @@
         <div>
           <p>技术栈：</p>
           <ul>
-            <li>React</li>
-            <li>React Router</li>
-            <li>Ant Design</li>
+            <li>Vue</li>
+            <li>Vue Router</li>
+            <li>ElementUI</li>
             <li>Axios</li>
           </ul>
         </div>
