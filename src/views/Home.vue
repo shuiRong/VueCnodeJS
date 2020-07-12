@@ -2,19 +2,19 @@
   <div class="home">
     <el-tabs v-model="tab" @tab-click="tabChanged">
       <el-tab-pane label="全部" name="all">
-        <Content :list='list' />
+        <Content :list="list" />
       </el-tab-pane>
       <el-tab-pane label="精华" name="good">
-        <Content :list='list' />
+        <Content :list="list" />
       </el-tab-pane>
       <el-tab-pane label="分享" name="share">
-        <Content :list='list' />
+        <Content :list="list" />
       </el-tab-pane>
       <el-tab-pane label="问答" name="ask">
-        <Content :list='list' />
+        <Content :list="list" />
       </el-tab-pane>
       <el-tab-pane label="招聘" name="job">
-        <Content :list='list' />
+        <Content :list="list" />
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -24,14 +24,14 @@
 /**
  * 主页
  */
-import Content from "@/components/Content.vue";
-import { getTopics } from "@/utils/api";
-
+import Content from '@/components/Content.vue';
+import { getTopics } from '@/utils/api';
+import { setSession, getSession } from '@/utils/util';
 export default {
   /**
    * 给此组件起的名字，会显示在Vue的DevTool里面
    */
-  name: "Home",
+  name: 'Home',
   /**
    * 当前组件的‘数据中心'
    */
@@ -39,9 +39,9 @@ export default {
     return {
       page: 1,
       limit: 20,
-      tab: "all",
+      tab: 'all',
       list: [],
-      store: {} // 存储所有Tab对应的数据，因为切换Tab后就没必要重新以limit:20加载数据。
+      store: {}, // 存储所有Tab对应的数据，因为切换Tab后就没必要重新以limit:20加载数据。
     };
   },
   /**
@@ -55,8 +55,8 @@ export default {
       getTopics({
         page: this.page,
         limit: this.limit,
-        tab: this.tab
-      }).then(res => {
+        tab: this.tab,
+      }).then((res) => {
         this.list = res.data;
         this.limit = this.limit + 10;
 
@@ -64,7 +64,7 @@ export default {
         // 将数据存储到对应的key下
         store[this.tab] = {
           limit: this.limit,
-          data: res.data
+          data: res.data,
         };
       });
     },
@@ -72,11 +72,9 @@ export default {
      * 滚动函数，判断当前滚动条是否到了底部来决定是否重新拉取数据
      */
     scrollMethod() {
-      const sumH =
-        document.body.scrollHeight || document.documentElement.scrollHeight;
+      const sumH = document.body.scrollHeight || document.documentElement.scrollHeight;
       const viewH = document.documentElement.clientHeight;
-      const scrollH =
-        document.body.scrollTop || document.documentElement.scrollTop;
+      const scrollH = document.body.scrollTop || document.documentElement.scrollTop;
       if (viewH + scrollH >= sumH) {
         this.getTopics();
       }
@@ -88,7 +86,8 @@ export default {
      */
     tabChanged() {
       const store = this.store;
-
+      // console.log(this.tab);
+      setSession('activeTab', this.tab);
       // 如果未存储当前Tab的数据，重新获取
       if (!store[this.tab]) {
         this.limit = 20;
@@ -99,27 +98,28 @@ export default {
 
       this.list = store[this.tab].data;
       this.limit = store[this.tab].limit;
-    }
+    },
   },
   /**
    * 一般此钩子下面调用接口获取数据
    */
   created() {
+    this.tab = getSession('activeTab') ? getSession('activeTab') : 'all';
     this.getTopics();
-    window.addEventListener("scroll", this.scrollMethod);
+    window.addEventListener('scroll', this.scrollMethod);
   },
   /**
    * 组件被销毁的钩子：移除绑定的滚动事件
    */
   destroyed() {
-    window.removeEventListener("scroll", this.scrollMethod);
+    window.removeEventListener('scroll', this.scrollMethod);
   },
   /**
    * 注册引用进来的其他组件
    */
   components: {
-    Content
-  }
+    Content,
+  },
 };
 </script>
 
@@ -132,4 +132,3 @@ export default {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 </style>
-
